@@ -1,0 +1,23 @@
+start
+
+O = 0 ' Timing offset in milliseconds
+high 0 ' Turn Light On
+
+main:
+    gosub SetLDRData
+    gosub SetMotorValues
+    pause O
+    goto main
+
+SetMotorValues:
+    forward M3 speed A% ' Left Motor
+    forward M4 speed B% ' Right Motor
+    return
+
+SetLDRData:
+    A = A0 / 255 ' Set A to Right LDR Value
+    B = A1 / 255 ' Set B to Right LDR Value
+
+    A = A * 100
+    B = B * 100
+    return
