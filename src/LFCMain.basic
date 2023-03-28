@@ -1,18 +1,39 @@
-start
 
-O = 0 ' Timing offset in milliseconds
+start
+O = 0 ' Timing Offset in Milliseconds
+L = 0 ' Required Light Level for Change
 high 0 ' Turn Light On
 
 main:
     gosub SetLDRData
     gosub SetMotorValues
-    pause O
+    pause 750
     goto main
 
 SetMotorValues:
-    forward M3 speed A% ' Left Motor
-    forward M4 speed B% ' Right Motor
-    return
+    if A or B < L then goto main
+    EaseLeft:
+        forward M3 speed 100%
+        forward M4 speed 50%
+        goto ReturnMotorValues
+    TurnLeft:
+        forward M3 speed 100%
+        forward M4 speed 0%
+        goto ReturnMotorValues
+    EaseRight:
+        forward M3 speed 50%
+        forward M4 speed 100%
+        goto ReturnMotorValues
+    TurnRight:
+        forward M3 speed 0%
+        forward M4 speed 100%
+        goto ReturnMotorValues
+    Straight:
+        forward M3 speed 100%
+        forward M4 speed 100%
+        goto ReturnMotorValues
+    ReturnMotorValues:
+        return
 
 SetLDRData:
     A = A0 / 255 ' Set A to Right LDR Value
