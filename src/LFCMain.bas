@@ -11,7 +11,7 @@ main:
     goto main
 
 SetMotorValues:
-    if A >= L or B >= L then goto Straight
+    if A >= L and B >= L then goto Straight
     if A <= 51 then goto TurnRight
     if A > 51 and A <= L then goto EaseRight
     if B <= 51 then goto TurnLeft
