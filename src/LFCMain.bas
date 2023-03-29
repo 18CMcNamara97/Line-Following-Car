@@ -11,12 +11,12 @@ main:
     goto main
 
 SetMotorValues:
-    if A < L or B < L then goto main
+    if A >= L or B >= L then goto Straight
     if A <= 51 then goto TurnRight
-    if A > 51 and A <= L then goto EaseRight 
+    if A > 51 and A <= L then goto EaseRight
     if B <= 51 then goto TurnLeft
     if B > 51 and B <= L then goto EaseRight
-    goto Straight
+    goto main
 
     EaseLeft:
         forward M3 speed 100%
@@ -42,9 +42,6 @@ SetMotorValues:
         return
 
 SetLDRData:
-    A = A0 / 255 ' Set A to Left LDR Value
-    B = A1 / 255 ' Set B to Right LDR Value
-
-    A = A * 100
-    B = B * 100
+    A = A0 ' Set A to Left LDR Value
+    B = A1 ' Set B to Right LDR Value
     return
