@@ -1,3 +1,10 @@
+' DOCUMENTATION
+' A: Left LDR Value
+' B: Right LDR Value
+' I: Timing Offset
+' H: Minimum Light Level
+
+
 
 start
 I = 0 ' Timing Offset in Milliseconds
@@ -15,7 +22,7 @@ SetMotorValues:
     if A <= 51 then goto TurnRight
     if A > 51 and A <= H then goto EaseRight
     if B <= 51 then goto TurnLeft
-    if B > 51 and B <= H then goto EaseRight
+    if B > 51 and B <= H then goto EaseLeft
     goto main
 
     EaseLeft:
