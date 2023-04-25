@@ -1,7 +1,7 @@
 
 start
-O = 0 ' Timing Offset in Milliseconds
-L = 128 ' Required Light Level for Change
+I = 0 ' Timing Offset in Milliseconds
+H = 128 ' Required Light Level for Change
 high 0 ' Turn Light On
 
 main:
@@ -11,11 +11,11 @@ main:
     goto main
 
 SetMotorValues:
-    if A >= L and B >= L then goto Straight
+    if A >= H and B >= H then goto Straight
     if A <= 51 then goto TurnRight
-    if A > 51 and A <= L then goto EaseRight
+    if A > 51 and A <= H then goto EaseRight
     if B <= 51 then goto TurnLeft
-    if B > 51 and B <= L then goto EaseRight
+    if B > 51 and B <= H then goto EaseRight
     goto main
 
     EaseLeft:
