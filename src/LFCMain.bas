@@ -1,13 +1,11 @@
 ' DOCUMENTATION
 ' A: Left LDR Value
 ' B: Right LDR Value
-' I: Timing Offset
 ' H: Minimum Light Level
 
 
 
 start
-I = 0 ' Timing Offset in Milliseconds
 H = 128 ' Required Light Level for Change
 high 0 ' Turn Light On
 
