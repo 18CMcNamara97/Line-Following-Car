@@ -6,8 +6,8 @@
 
 
 start
-H = 128 ' Required Light Level for Change
-high 0 ' Turn Light On
+H = 150 ' Required Light Level for Change
+high 1 ' Turn Light On
 
 main:
     gosub SetLDRData
@@ -17,30 +17,30 @@ main:
 
 SetMotorValues:
     if A >= H and B >= H then goto Straight
-    if A <= 51 then goto TurnRight
-    if A > 51 and A <= H then goto EaseRight
-    if B <= 51 then goto TurnLeft
-    if B > 51 and B <= H then goto EaseLeft
+    if A <= H then goto TurnRight
+    'if A > H and A <= H then goto EaseRight
+    if B <= H then goto TurnLeft
+    'if B > H and B <= H then goto EaseLeft
     goto main
 
     EaseLeft:
-        forward M3 speed 100%
+        backward M3 speed 100%
         forward M4 speed 50%
         goto ReturnMotorValues
     TurnLeft:
-        forward M3 speed 100%
+        backward M3 speed 100%
         forward M4 speed 0%
         goto ReturnMotorValues
     EaseRight:
-        forward M3 speed 50%
+        backward M3 speed 50%
         forward M4 speed 100%
         goto ReturnMotorValues
     TurnRight:
-        forward M3 speed 0%
+        backward M3 speed 0%
         forward M4 speed 100%
         goto ReturnMotorValues
     Straight:
-        forward M3 speed 100%
+        backward M3 speed 100%
         forward M4 speed 100%
         goto ReturnMotorValues
     ReturnMotorValues:
