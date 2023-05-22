@@ -1,52 +1,36 @@
-' DOCUMENTATION
-' A: Left LDR Value
-' B: Right LDR Value
-' H: Minimum Light Level
-
-
-
 start
-H = 150 ' Required Light Level for Change
-high 1 ' Turn Light On
+H = 215 'Light level needed for turning
+high 1
+
 
 main:
     gosub SetLDRData
     gosub SetMotorValues
-    pause 750
     goto main
 
 SetMotorValues:
     if A >= H and B >= H then goto Straight
-    if A <= H then goto TurnRight
-    'if A > H and A <= H then goto EaseRight
-    if B <= H then goto TurnLeft
-    'if B > H and B <= H then goto EaseLeft
-    goto main
-
-    EaseLeft:
-        backward M3 speed 100%
-        forward M4 speed 50%
-        goto ReturnMotorValues
+    if A < B then goto TurnRight
+    if B < A then goto TurnLeft
+    return
+    
     TurnLeft:
-        backward M3 speed 100%
-        forward M4 speed 0%
-        goto ReturnMotorValues
-    EaseRight:
-        backward M3 speed 50%
-        forward M4 speed 100%
+        backward M3 speed 40%
+        backward M4 speed 80%
         goto ReturnMotorValues
     TurnRight:
-        backward M3 speed 0%
-        forward M4 speed 100%
+        forward M3 speed 40%
+        forward M4 speed 80%
         goto ReturnMotorValues
     Straight:
-        backward M3 speed 100%
-        forward M4 speed 100%
+        backward M3 speed 40%
+        forward M4 speed 40%
         goto ReturnMotorValues
     ReturnMotorValues:
         return
 
 SetLDRData:
-    A = A0 ' Set A to Left LDR Value
-    B = A1 ' Set B to Right LDR Value
+    A = A0
+    B = A1
+    A = A + 3
     return
