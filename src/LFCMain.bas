@@ -23,9 +23,10 @@ SetMotorValues:
         forward M4 speed 80%
         goto ReturnMotorValues
     Straight:
-        backward M3 speed 40%
-        forward M4 speed 40%
+        backward M3 speed 70%
+        forward M4 speed 70%
         goto ReturnMotorValues
+
     ReturnMotorValues:
         return
 
